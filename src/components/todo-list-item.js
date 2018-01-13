@@ -41,8 +41,7 @@ export default class TodoListItem extends React.Component{
         if(this.state.isEditing) {
             return (
                 <td>
-                    <button
-                        onClick={this.onSaveClick}>Save</button>
+                    <button onClick={this.onSaveClick}>Save</button>
                     <button onClick={this.onCancelClick}>Cancel</button>
                 </td>
             )
@@ -50,7 +49,7 @@ export default class TodoListItem extends React.Component{
         return (
             <td>
                 <button onClick={this.onEditClick}>Edit</button>
-                <button>Delete</button>
+                <button onClick={this.props.deleteTask.bind(this, this.props.task.task)}>Delete</button>
             </td>
         )
 
@@ -65,11 +64,10 @@ export default class TodoListItem extends React.Component{
         e.preventDefault();
         const prevTask = this.props.task.task;
         const newTask = this._newTask.value;
-        console.log(prevTask + " -> " + newTask);
         this.props.saveTask(prevTask, newTask);
         this.setState({isEditing: false});
-
     }
+
 
 
     render() {

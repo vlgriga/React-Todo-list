@@ -5,17 +5,9 @@ import React from 'react';
 import TodoList from './todo-list';
 import CreateTask from './create-task';
 import _ from 'lodash';
+import Todo from './todo.json';
 
-const todo = [
-    {
-        task: 'Make React tutorial',
-        isCompleted: true
-    },
-    {
-        task: 'Eat dinner',
-        isCompleted: false
-    }
-];
+const todo = Todo;
 
 
 export default class App extends React.Component{
@@ -27,13 +19,14 @@ export default class App extends React.Component{
         this.onCreateTask = this.onCreateTask.bind(this);
         this.toggleTask = this.toggleTask.bind(this);
         this.saveTask = this.saveTask.bind(this);
+        this.deleteTask = this.deleteTask.bind(this);
     }
 
     onCreateTask( value) {
         this.state.todo.push({
             task : value,
             isCompleted: false
-        })
+        });
         this.setState({todo : this.state.todo});
     }
 
@@ -51,14 +44,21 @@ export default class App extends React.Component{
         this.setState({todo : this.state.todo});
     }
 
+    deleteTask(taskDelete) {
+        _.remove(this.state.todo, item =>
+            item.task === taskDelete);
+        this.setState({todo : this.state.todo});
+    }
+
     render() {
         return (
             <div>
                 <h1>React TODO list</h1>
-                <CreateTask onCreateTask={this.onCreateTask} />
+                <CreateTask onCreateTask={this.onCreateTask} todoList={this.state.todo} />
                 <TodoList todo={this.state.todo}
                           toggleTask={this.toggleTask}
-                          saveTask = {this.saveTask}/>
+                          saveTask = {this.saveTask}
+                          deleteTask={this.deleteTask}/>
             </div>
         );
     }

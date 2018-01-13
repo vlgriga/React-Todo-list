@@ -17,7 +17,8 @@ export default class TodoList extends React.Component{
         return _.map(this.props.todo , (index,key) =>
             <TodoListItem  key={key} task={index}
                            toggleTask={this.props.toggleTask}
-                           saveTask={this.props.saveTask}/>);
+                           saveTask={this.props.saveTask}
+                           deleteTask={this.props.deleteTask}/>);
     }
 
     render() {

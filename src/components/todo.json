@@ -1,0 +1,15 @@
+[
+  {
+    "task": "Make React tutorial",
+    "isCompleted": true
+  },
+  {
+    "task": "Eat dinner",
+    "isCompleted": false
+  },
+  {
+    "task": "Go for a walk",
+    "isCompleted": false
+  }
+
+]
